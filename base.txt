@@ -1,0 +1,3 @@
+qwerty:qwerty
+user:P@ssW0rd
+ivan:ivanov
