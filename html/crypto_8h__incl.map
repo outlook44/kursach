@@ -1,0 +1,11 @@
+<map id="crypto.h" name="crypto.h">
+<area shape="rect" id="Node000001" title="Заголовочный файл для криптографических функций" alt="" coords="184,5,259,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,64,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="192,33,78,76,76,71,190,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="89,79,207,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="211,33,172,71,168,67,207,29"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="231,79,361,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="235,29,276,67,272,71,231,33"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="386,79,505,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="258,28,397,72,395,77,257,33"/>
+</map>
