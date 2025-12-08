@@ -1,0 +1,93 @@
+\doxysection{Файл log.\+h}
+\hypertarget{log_8h}{}\label{log_8h}\index{log.h@{log.h}}
+
+
+Заголовочный файл для функций логирования  
+
+
+{\ttfamily \#include "{}connection.\+h"{}}\newline
+{\ttfamily \#include "{}interface.\+h"{}}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$system\+\_\+error$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+Граф включаемых заголовочных файлов для log.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{log_8h__incl}
+\end{center}
+\end{figure}
+Граф файлов, в которые включается этот файл\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=240pt]{log_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Функции}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{log_8h_adc57ea2bcc67e64f5f862c259b94837e}{get\+Current\+Time}} ()
+\begin{DoxyCompactList}\small\item\em Получение текущего времени в формате строки \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{log_8h_a44b9091e0c1302200b29ca9ab2ab6063}{log\+Error}} (const std\+::string \&log\+File, const std\+::string \&error\+Message)
+\begin{DoxyCompactList}\small\item\em Запись ошибки в лог-\/файл \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Заголовочный файл для функций логирования 
+
+\begin{DoxyAuthor}{Автор}
+Веселов А.\+Н. 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Версия}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Дата}
+2025 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Авторство}
+ИБСТ ПГУ
+\end{DoxyCopyright}
+Содержит объявления функций для работы с системой логирования 
+
+\doxysubsection{Функции}
+\Hypertarget{log_8h_adc57ea2bcc67e64f5f862c259b94837e}\label{log_8h_adc57ea2bcc67e64f5f862c259b94837e} 
+\index{log.h@{log.h}!getCurrentTime@{getCurrentTime}}
+\index{getCurrentTime@{getCurrentTime}!log.h@{log.h}}
+\doxysubsubsection{\texorpdfstring{getCurrentTime()}{getCurrentTime()}}
+{\footnotesize\ttfamily std\+::string get\+Current\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Получение текущего времени в формате строки 
+
+\begin{DoxyReturn}{Возвращает}
+Строка с текущим временем в формате "{}ГГГГ-\/ММ-\/ДД ЧЧ\+:ММ\+:СС.\+ммм"{}
+
+Строка с текущим временем в формате "{}ГГГГ-\/ММ-\/ДД ЧЧ\+:ММ\+:СС.\+ммм"{}
+\end{DoxyReturn}
+Форматирует текущее системное время с точностью до миллисекунд \Hypertarget{log_8h_a44b9091e0c1302200b29ca9ab2ab6063}\label{log_8h_a44b9091e0c1302200b29ca9ab2ab6063} 
+\index{log.h@{log.h}!logError@{logError}}
+\index{logError@{logError}!log.h@{log.h}}
+\doxysubsubsection{\texorpdfstring{logError()}{logError()}}
+{\footnotesize\ttfamily void log\+Error (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{log\+File,  }\item[{const std\+::string \&}]{error\+Message }\end{DoxyParamCaption})}
+
+
+
+Запись ошибки в лог-\/файл 
+
+
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\texttt{ in}}  & {\em log\+File} & Имя файла для логирования \\
+\hline
+\mbox{\texttt{ in}}  & {\em error\+Message} & Сообщение об ошибке для записи\\
+\hline
+\mbox{\texttt{ in}}  & {\em log\+File} & Имя файла для логирования \\
+\hline
+\mbox{\texttt{ in}}  & {\em error\+Message} & Сообщение об ошибке для записи\\
+\hline
+\end{DoxyParams}
+Добавляет запись в лог-\/файл с временной меткой и префиксом "{}\+ERROR"{} 

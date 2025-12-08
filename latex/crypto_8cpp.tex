@@ -1,0 +1,72 @@
+\doxysection{Файл crypto.\+cpp}
+\hypertarget{crypto_8cpp}{}\label{crypto_8cpp}\index{crypto.cpp@{crypto.cpp}}
+
+
+Реализация криптографических функций  
+
+
+{\ttfamily \#include "{}crypto.\+h"{}}\newline
+Граф включаемых заголовочных файлов для crypto.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{crypto_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Функции}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{crypto_8cpp_aa9dd85785a218a052be7b0e50b3aff37}{auth}} (string salt, string pass)
+\begin{DoxyCompactList}\small\item\em Функция аутентификации с использованием SHA224 хеширования \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Реализация криптографических функций 
+
+\begin{DoxyAuthor}{Автор}
+Веселов А.\+Н. 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Версия}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Дата}
+2025 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Авторство}
+ИБСТ ПГУ
+\end{DoxyCopyright}
+Реализует функцию хеширования с использованием алгоритма SHA224 
+
+\doxysubsection{Функции}
+\Hypertarget{crypto_8cpp_aa9dd85785a218a052be7b0e50b3aff37}\label{crypto_8cpp_aa9dd85785a218a052be7b0e50b3aff37} 
+\index{crypto.cpp@{crypto.cpp}!auth@{auth}}
+\index{auth@{auth}!crypto.cpp@{crypto.cpp}}
+\doxysubsubsection{\texorpdfstring{auth()}{auth()}}
+{\footnotesize\ttfamily string auth (\begin{DoxyParamCaption}\item[{string}]{salt,  }\item[{string}]{pass }\end{DoxyParamCaption})}
+
+
+
+Функция аутентификации с использованием SHA224 хеширования 
+
+
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\texttt{ in}}  & {\em salt} & Соль для хеширования \\
+\hline
+\mbox{\texttt{ in}}  & {\em pass} & Пароль пользователя \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Хеш-\/строка в hex-\/формате
+\end{DoxyReturn}
+Вычисляет SHA224 хеш от конкатенации соли и пароля, результат возвращает в hex-\/формате \texorpdfstring{$<$}{<} Объект для вычисления SHA224 хеша
+
+\texorpdfstring{$<$}{<} Результирующий хеш
+
+\texorpdfstring{$<$}{<} Конкатенация соли и пароля
+
+\texorpdfstring{$<$}{<} Использование SHA224 для хеширования
+
+\texorpdfstring{$<$}{<} Кодирование результата в hex
+
+\texorpdfstring{$<$}{<} Возврат хеша в hex-\/формате
