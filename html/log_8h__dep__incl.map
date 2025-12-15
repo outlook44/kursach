@@ -1,7 +1,0 @@
-<map id="log.h" name="log.h">
-<area shape="rect" id="Node000001" title="Заголовочный файл для функций логирования" alt="" coords="97,5,151,31"/>
-<area shape="rect" id="Node000002" href="$connection_8cpp.html" title="Реализация функций сетевого соединения и аутентификации" alt="" coords="5,79,125,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,43,77,80,73,77,104,40"/>
-<area shape="rect" id="Node000003" href="$log_8cpp.html" title="Реализация функций логирования" alt="" coords="149,79,219,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="145,40,176,77,172,80,141,43"/>
-</map>
