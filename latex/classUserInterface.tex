@@ -1,0 +1,122 @@
+\hypertarget{classUserInterface}{}\doxysection{Класс User\+Interface}
+\label{classUserInterface}\index{UserInterface@{UserInterface}}
+
+
+Класс для обработки параметров командной строки  
+
+
+
+
+{\ttfamily \#include $<$interface.\+h$>$}
+
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classUserInterface_ae6fb70370701b3bd6120e923df9705b0}{User\+Interface}} ()
+\begin{DoxyCompactList}\small\item\em Конструктор класса \mbox{\hyperlink{classUserInterface}{User\+Interface}}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classUserInterface_adbce186e2a500e1e9566388cd51ed7a4}{Parser}} (int argc, const char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Парсинг аргументов командной строки \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classUserInterface_a5c785c74f02ab4d6b47294abed18d03c}{get\+Description}} ()
+\begin{DoxyCompactList}\small\item\em Получение описания параметров \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structParams}{Params}} \mbox{\hyperlink{classUserInterface_ac4f4703f4f244b97ce0d875990879c22}{get\+Params}} ()
+\begin{DoxyCompactList}\small\item\em Получение параметров \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Класс для обработки параметров командной строки 
+
+Обеспечивает парсинг, валидацию и хранение параметров командной строки 
+
+\doxysubsection{Конструктор(ы)}
+\mbox{\Hypertarget{classUserInterface_ae6fb70370701b3bd6120e923df9705b0}\label{classUserInterface_ae6fb70370701b3bd6120e923df9705b0}} 
+\index{UserInterface@{UserInterface}!UserInterface@{UserInterface}}
+\index{UserInterface@{UserInterface}!UserInterface@{UserInterface}}
+\doxysubsubsection{\texorpdfstring{UserInterface()}{UserInterface()}}
+{\footnotesize\ttfamily User\+Interface\+::\+User\+Interface (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Конструктор класса \mbox{\hyperlink{classUserInterface}{User\+Interface}}. 
+
+Инициализирует опции командной строки с обязательными параметрами
+
+Инициализирует опции командной строки с обязательными параметрами и значениями по умолчанию $<$ Опция для вывода справки
+
+$<$ Файл логирования (по умолчанию journal.\+txt)
+
+$<$ Обязательный параметр\+: файл базы пользователей
+
+$<$ Обязательный параметр\+: файл журнала
+
+$<$ Обязательный параметр\+: порт сервера
+
+$<$ Адрес сервера (по умолчанию 127.\+0.\+0.\+1)
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classUserInterface_a5c785c74f02ab4d6b47294abed18d03c}\label{classUserInterface_a5c785c74f02ab4d6b47294abed18d03c}} 
+\index{UserInterface@{UserInterface}!getDescription@{getDescription}}
+\index{getDescription@{getDescription}!UserInterface@{UserInterface}}
+\doxysubsubsection{\texorpdfstring{getDescription()}{getDescription()}}
+{\footnotesize\ttfamily std\+::string User\+Interface\+::get\+Description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Получение описания параметров 
+
+\begin{DoxyReturn}{Возвращает}
+Строка с описанием поддерживаемых опций 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classUserInterface_ac4f4703f4f244b97ce0d875990879c22}\label{classUserInterface_ac4f4703f4f244b97ce0d875990879c22}} 
+\index{UserInterface@{UserInterface}!getParams@{getParams}}
+\index{getParams@{getParams}!UserInterface@{UserInterface}}
+\doxysubsubsection{\texorpdfstring{getParams()}{getParams()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structParams}{Params}} User\+Interface\+::get\+Params (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Получение параметров 
+
+\begin{DoxyReturn}{Возвращает}
+Структура \mbox{\hyperlink{structParams}{Params}} с распарсенными значениями 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classUserInterface_adbce186e2a500e1e9566388cd51ed7a4}\label{classUserInterface_adbce186e2a500e1e9566388cd51ed7a4}} 
+\index{UserInterface@{UserInterface}!Parser@{Parser}}
+\index{Parser@{Parser}!UserInterface@{UserInterface}}
+\doxysubsubsection{\texorpdfstring{Parser()}{Parser()}}
+{\footnotesize\ttfamily bool User\+Interface\+::\+Parser (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{const char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Парсинг аргументов командной строки 
+
+
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\texttt{ in}}  & {\em argc} & Количество аргументов \\
+\hline
+\mbox{\texttt{ in}}  & {\em argv} & Массив аргументов \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+true если парсинг успешен, false если требуется показать справку
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\texttt{ in}}  & {\em argc} & Количество аргументов \\
+\hline
+\mbox{\texttt{ in}}  & {\em argv} & Массив аргументов \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+true если парсинг успешен, false если требуется показать справку 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Исключения}
+{\em exception} & при ошибках парсинга или отсутствии обязательных параметров \\
+\hline
+\end{DoxyExceptions}
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{interface_8h}{interface.\+h}}\item 
+\mbox{\hyperlink{interface_8cpp}{interface.\+cpp}}\end{DoxyCompactItemize}
