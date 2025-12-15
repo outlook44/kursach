@@ -1,0 +1,9 @@
+<map id="interface.h" name="interface.h">
+<area shape="rect" id="node1" title="Заголовочный файл пользовательского интерфейса" alt="" coords="158,5,250,32"/>
+<area shape="rect" id="node2" href="$connection_8h.html" title="Заголовочный файл для функций сетевого соединения" alt="" coords="106,80,211,107"/>
+<area shape="rect" id="node4" href="$log_8h.html" title="Заголовочный файл для функций логирования" alt="" coords="53,155,107,181"/>
+<area shape="rect" id="node6" href="$main_8cpp.html" title="Главный файл серверного приложения" alt="" coords="201,155,284,181"/>
+<area shape="rect" id="node7" href="$interface_8cpp.html" title="Реализация пользовательского интерфейса" alt="" coords="287,80,393,107"/>
+<area shape="rect" id="node3" href="$connection_8cpp.html" title="Реализация функций сетевого соединения и аутентификации" alt="" coords="99,229,219,256"/>
+<area shape="rect" id="node5" href="$log_8cpp.html" title="Реализация функций логирования" alt="" coords="5,229,75,256"/>
+</map>

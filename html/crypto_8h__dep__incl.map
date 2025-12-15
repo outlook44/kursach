@@ -1,0 +1,9 @@
+<map id="crypto.h" name="crypto.h">
+<area shape="rect" id="node1" title="Заголовочный файл для криптографических функций" alt="" coords="155,5,229,32"/>
+<area shape="rect" id="node2" href="$connection_8h.html" title="Заголовочный файл для функций сетевого соединения" alt="" coords="78,80,183,107"/>
+<area shape="rect" id="node7" href="$crypto_8cpp.html" title="Реализация криптографических функций" alt="" coords="208,80,299,107"/>
+<area shape="rect" id="node3" href="$connection_8cpp.html" title="Реализация функций сетевого соединения и аутентификации" alt="" coords="5,229,125,256"/>
+<area shape="rect" id="node4" href="$log_8h.html" title="Заголовочный файл для функций логирования" alt="" coords="103,155,158,181"/>
+<area shape="rect" id="node6" href="$main_8cpp.html" title="Главный файл серверного приложения" alt="" coords="183,155,265,181"/>
+<area shape="rect" id="node5" href="$log_8cpp.html" title="Реализация функций логирования" alt="" coords="149,229,219,256"/>
+</map>
