@@ -1,0 +1,13 @@
+[2025-12-08 10:21:20.074] ERROR: Ошибка bind: Address already in use
+[2025-12-08 10:21:28.326] ERROR: Ошибка bind: Address already in use
+[2025-12-08 10:21:29.639] ERROR: Ошибка bind: Address already in use
+[2025-12-08 10:21:30.498] ERROR: Ошибка bind: Address already in use
+[2025-12-08 10:21:31.269] ERROR: Ошибка bind: Address already in use
+[2025-12-08 10:21:33.551] ERROR: Ошибка bind: Address already in use
+[2025-12-08 10:21:34.545] ERROR: Ошибка bind: Address already in use
+[2025-12-08 10:21:35.443] ERROR: Ошибка bind: Address already in use
+[2025-12-08 10:21:37.405] ERROR: Ошибка bind: Address already in use
+[2025-12-08 10:21:39.770] ERROR: Ошибка bind: Address already in use
+[2025-12-08 10:25:27.413] ERROR: Пользователь не найден: user
+[2025-12-08 10:26:23.213] ERROR: Ошибка bind: Address already in use
+[2025-12-08 10:32:17.419] ERROR: Пользователь не найден: user

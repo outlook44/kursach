@@ -1,11 +1,7 @@
 /**
  * @file connection.h
  * @author Веселов А.Н.
- * @version 1.0
- * @date 2025
- * @copyright ИБСТ ПГУ
- * @brief Заголовочный файл для функций сетевого соединения
- * @details Содержит объявления функций для работы с сетевыми соединениями и аутентификации
+ * @brief Заголовочный файл класса сетевого соединения
  */
 
 #pragma once
@@ -19,13 +15,24 @@
 #include <sys/socket.h>
 #include <iostream>
 #include <fstream>
-#define BUFFER_SIZE 1024 ///< Размер буфера для сетевого обмена
+
+/// Размер буфера для сетевого обмена
+#define BUFFER_SIZE 1024
+
 using namespace std;
 
 /**
- * @brief Основная функция установки соединения и обработки клиентов
- * @param[in] p Указатель на параметры соединения
- * @return 0 при успешном выполнении, 1 при ошибке
- * @throw system_error при ошибках сетевого взаимодействия
+ * @class Connection
+ * @brief Класс для управления сетевыми соединениями
  */
-int connection(const Params* p);
+class Connection
+{
+public:
+    /**
+     * @brief Устанавливает соединение и обрабатывает клиентов
+     * @param[in] p Параметры соединения
+     * @return 0 при успехе, 1 при ошибке
+     * @throw system_error при сетевых ошибках
+     */
+    static int connection(const Params* p);
+};

@@ -5,7 +5,11 @@
  * @date 2025
  * @copyright ИБСТ ПГУ
  * @brief Реализация функций сетевого соединения и аутентификации
- * @details Серверная часть приложения, обрабатывающая подключения клиентов, аутентификацию и вычисления
+ * @details Серверная часть приложения, обрабатывающая подключения клиентов, 
+ *          аутентификацию и вычисления. Реализует полный цикл работы сервера: 
+ *          создание сокета, привязка к порту, прослушивание соединений, 
+ *          обработка клиентских запросов, аутентификация пользователей и 
+ *          выполнение вычислительных операций.
  */
 
 #include "connection.h"
@@ -25,11 +29,10 @@ using namespace std;
 
 /**
  * @brief Поиск пользователя в файле по логину
- * @param[in] filename Имя файла с пользователями
- * @param[in] username Логин для поиска
- * @param[out] password Найденный пароль (выходной параметр)
- * @return true если пользователь найден, false если нет
- * @details Функция читает файл в формате "логин:пароль" и ищет указанного пользователя
+ * @param filename Путь к файлу с данными пользователей
+ * @param username Логин пользователя для поиска
+ * @param[out] password Найденный пароль пользователя
+ * @return true если пользователь найден, иначе false
  */
 bool findUserInFile(const std::string& filename, const std::string& username, std::string& password) {
     std::ifstream file(filename);
@@ -53,7 +56,7 @@ bool findUserInFile(const std::string& filename, const std::string& username, st
         std::string file_user = line.substr(0, pos);
         std::string file_pass = line.substr(pos + 1);
         
-        // Удаляем пробелы
+        // Удаляем пробельные символы в начале и конце
         file_user.erase(0, file_user.find_first_not_of(" \t"));
         file_user.erase(file_user.find_last_not_of(" \t") + 1);
         file_pass.erase(0, file_pass.find_first_not_of(" \t"));
@@ -73,16 +76,14 @@ bool findUserInFile(const std::string& filename, const std::string& username, st
 
 /**
  * @brief Обработка передачи данных после успешной аутентификации
- * @param[in] s Основной сокет сервера
- * @param[in] client_socket Сокет клиента
- * @param[in] p Параметры соединения
+ * @param s Дескриптор основного сокета сервера
+ * @param client_socket Дескриптор сокета клиента
+ * @param p Указатель на структуру параметров соединения
  * @return 0 при успешном выполнении
- * @throw system_error при ошибках сетевого взаимодействия
- * @details Функция получает векторы от клиента, вычисляет сумму квадратов элементов и возвращает результат
+ * @throw std::system_error при ошибках сетевого взаимодействия
  */
 int datawrite(int s, int client_socket, const Params* p){
-    // Получаем количество векторов
-    uint32_t vectors_count; ///< Количество векторов для обработки
+    uint32_t vectors_count;
     ssize_t total_received = 0;
     char* buff = reinterpret_cast<char*>(&vectors_count);
 
@@ -98,14 +99,14 @@ int datawrite(int s, int client_socket, const Params* p){
         }
         total_received += received;
     }
-    std::cout << "Количество векторов: " << vectors_count << std::endl;
 
     // Обрабатываем каждый вектор
     for (uint32_t vector_idx = 0; vector_idx < vectors_count; vector_idx++) {
-        uint32_t vector_size; ///< Размер текущего вектора
+        uint32_t vector_size;
         total_received = 0;
         buff = reinterpret_cast<char*>(&vector_size);
         
+        // Получаем размер вектора
         while (total_received < sizeof(vector_size)) {
             ssize_t received = recv(client_socket, buff + total_received, sizeof(vector_size) - total_received, 0);
             if (received <= 0) {
@@ -117,11 +118,11 @@ int datawrite(int s, int client_socket, const Params* p){
             }
             total_received += received;
         }
-        std::cout << "Вектор " << vector_idx << ", длина: " << vector_size << std::endl;
 
-        int32_t result = 0; ///< Результат вычислений для вектора
+        int32_t result = 0;
+        // Получаем и обрабатываем элементы вектора
         for (uint32_t elem_idx = 0; elem_idx < vector_size; elem_idx++) {
-            int32_t element; ///< Элемент вектора
+            int32_t element;
             total_received = 0;
             buff = reinterpret_cast<char*>(&element);
             
@@ -137,11 +138,10 @@ int datawrite(int s, int client_socket, const Params* p){
                 total_received += received;
             }
             
-            std::cout << "  Элемент " << elem_idx << ": " << element << std::endl;
-            result = result + element * element; ///< Накопление суммы квадратов
+            result = result + element * element; // Сумма квадратов
         }
         
-        std::cout << "Результат: " << result << std::endl;
+        // Отправляем результат обратно клиенту
         ssize_t send_result = send(client_socket, &result, sizeof(result), 0);
         if (send_result == -1) {
             std::string errorMsg = "Ошибка send (результат вектора " + std::to_string(vector_idx) + "): " + std::string(strerror(errno));
@@ -157,15 +157,14 @@ int datawrite(int s, int client_socket, const Params* p){
 
 /**
  * @brief Основная функция установки соединения и обработки клиентов
- * @param[in] p Указатель на параметры соединения
- * @return 0 при успешном выполнении, 1 при ошибке
- * @throw system_error при ошибках сетевого взаимодействия
- * @details Функция реализует серверный сокет, принимает подключения, выполняет аутентификацию и обработку данных
+ * @param p Указатель на параметры соединения
+ * @return 0 при успехе, 1 при ошибке аутентификации
+ * @throw std::system_error при сетевых ошибках
  */
-int connection(const Params* p) {
+int Connection::connection(const Params* p) {
     ifstream errFile(p->logFile);
     
-    // Создание сокета
+    // Создание сокета TCP/IP
     int s = socket(AF_INET, SOCK_STREAM, 0);
     if (s == -1) {
         std::string errorMsg = "Ошибка создания сокета: " + std::string(strerror(errno));
@@ -175,9 +174,9 @@ int connection(const Params* p) {
 
     // Настройка адреса сервера
     std::unique_ptr<sockaddr_in> self_addr(new sockaddr_in);
-    self_addr->sin_family = AF_INET; ///< Семейство адресов IPv4
-    self_addr->sin_port = htons(p->Port); ///< Порт сервера
-    self_addr->sin_addr.s_addr = inet_addr(p->Address.c_str()); ///< IP-адрес сервера
+    self_addr->sin_family = AF_INET;
+    self_addr->sin_port = htons(p->Port);
+    self_addr->sin_addr.s_addr = inet_addr(p->Address.c_str());
 
     // Привязка сокета к адресу
     int rc = bind(s, reinterpret_cast<const sockaddr*>(self_addr.get()), sizeof(sockaddr_in));
@@ -198,7 +197,7 @@ int connection(const Params* p) {
     }
 
     // Принятие входящего соединения
-    sockaddr_in client_addr; ///< Адрес клиента
+    sockaddr_in client_addr;
     socklen_t client_len = sizeof(client_addr);
     int client_socket = accept(s, reinterpret_cast<sockaddr*>(&client_addr), &client_len);
     if (client_socket == -1) {
@@ -208,8 +207,8 @@ int connection(const Params* p) {
         throw std::system_error(errno, std::generic_category());
     }
 
-    // 1. Получаем логин от клиента
-    char buffer[BUFFER_SIZE]; ///< Буфер для приема данных
+    // Получение логина от клиента
+    char buffer[BUFFER_SIZE];
     ssize_t received_bytes = recv(client_socket, buffer, BUFFER_SIZE - 1, 0);
     if (received_bytes == -1) {
         std::string errorMsg = "Ошибка recv (логин): " + std::string(strerror(errno));
@@ -219,20 +218,15 @@ int connection(const Params* p) {
         throw std::system_error(errno, std::generic_category());
     }
 
-    if (received_bytes > 0) {
-        buffer[received_bytes] = '\0';
-        std::cout << "Получен логин от клиента: " << buffer << std::endl;
-    }
-
-    string client_login(buffer); ///< Логин клиента
+    buffer[received_bytes] = '\0';
+    string client_login(buffer);
     
-    // 2. Ищем пользователя в файле
-    string user_password; ///< Пароль пользователя
+    // Поиск пользователя в файле
+    string user_password;
     if (!findUserInFile(p->inFileName, client_login, user_password)) {
         std::string errorMsg = "Пользователь не найден: " + client_login;
         logError(p->logFile, errorMsg);
         
-        // Отправляем ошибку клиенту
         string message = "ERR_USER_NOT_FOUND";
         send(client_socket, message.c_str(), message.length(), 0);
         
@@ -241,10 +235,8 @@ int connection(const Params* p) {
         return 1;
     }
 
-    std::cout << "Найден пользователь: " << client_login << ", пароль: " << user_password << std::endl;
-
-    // 3. Отправляем соль клиенту
-    string salt = "HASHHASHHASHHASH"; ///< Соль для хеширования
+    // Отправка соли для хеширования
+    string salt = "HASHHASHHASHHASH";
     string message = salt;
     ssize_t sent_bytes = send(client_socket, message.c_str(), message.length(), 0);
     if (sent_bytes == -1) {
@@ -255,7 +247,7 @@ int connection(const Params* p) {
         throw std::system_error(errno, std::generic_category());
     }
 
-    // 4. Получаем хеш от клиента
+    // Получение хеша от клиента
     received_bytes = recv(client_socket, buffer, BUFFER_SIZE - 1, 0);
     if (received_bytes == -1) {
         std::string errorMsg = "Ошибка recv (хеш): " + std::string(strerror(errno));
@@ -265,24 +257,21 @@ int connection(const Params* p) {
         throw std::system_error(errno, std::generic_category());
     }
 
-    if (received_bytes > 0) {
-        buffer[received_bytes] = '\0';
-        std::cout << "Получен хеш от клиента: " << buffer << std::endl;
-    }
-
-    // 5. Проверяем хеш
-    string client_hash(buffer); ///< Хеш, полученный от клиента
-    string server_hash = auth(salt, user_password); ///< Хеш, вычисленный сервером
+    buffer[received_bytes] = '\0';
+    string client_hash(buffer);
+    
+    // Вычисление хеша на сервере и сравнение
+    string server_hash = auth(salt, user_password);
 
     if (client_hash == server_hash) {
         message = "OK";
-        std::cout << "Аутентификация успешна для пользователя: " << client_login << std::endl;
     } else {
         message = "ERR";
         std::string errorMsg = "Ошибка аутентификации: неверный хеш для пользователя " + client_login;
         logError(p->logFile, errorMsg);
     }
 
+    // Отправка результата аутентификации
     sent_bytes = send(client_socket, message.c_str(), message.length(), 0);
     if (sent_bytes == -1) {
         std::string errorMsg = "Ошибка send (результат аутентификации): " + std::string(strerror(errno));
@@ -292,7 +281,7 @@ int connection(const Params* p) {
         throw std::system_error(errno, std::generic_category());
     }
 
-    // Если аутентификация не прошла, завершаем соединение
+    // Завершение при неудачной аутентификации
     if (message != "OK") {
         close(client_socket);
         close(s);
@@ -302,6 +291,7 @@ int connection(const Params* p) {
     // Обработка данных после успешной аутентификации
     datawrite(s, client_socket, p);
     
+    // Корректное закрытие соединений
     close(client_socket);
     close(s);
     return 0;
