@@ -3,6 +3,8 @@
 #include <string>
 
 SUITE(HelpTest) {
+    
+    
     TEST(ShortHelp) {
         UserInterface iface;
         const char* argv[] = {"test", "-h", nullptr};
@@ -11,6 +13,7 @@ SUITE(HelpTest) {
         CHECK(!iface.getDescription().empty());
     }
     
+   
     TEST(Help) {
         UserInterface iface;
         const char* argv[] = {"test", "--help", nullptr};
@@ -21,6 +24,8 @@ SUITE(HelpTest) {
 }
 
 SUITE(ParameterTest) {
+    
+    
     TEST(ValidParameters) {
         UserInterface iface;
         const char* argv[] = {"test", "-b", "database.db", "-j", "journal.log", "-p", "8080", nullptr};
@@ -32,6 +37,7 @@ SUITE(ParameterTest) {
         CHECK_EQUAL(8080, iface.getParams().Port);
     }
 
+    
     TEST(ValidParametersLongForm) {
         UserInterface iface;
         const char* argv[] = {"test", "--base", "database.db", "--journal", "journal.log", "--port", "8080", nullptr};
@@ -43,6 +49,7 @@ SUITE(ParameterTest) {
         CHECK_EQUAL(8080, iface.getParams().Port);
     }
 
+   
     TEST(MissingBaseParameter) {
         UserInterface iface;
         const char* argv[] = {"test", "-j", "journal.log", "-p", "8080", nullptr};
@@ -50,6 +57,7 @@ SUITE(ParameterTest) {
         CHECK_THROW(iface.Parser(argc, argv), std::exception);
     }
 
+    
     TEST(MissingJournalParameter) {
         UserInterface iface;
         const char* argv[] = {"test", "-b", "database.db", "-p", "8080", nullptr};
@@ -57,6 +65,7 @@ SUITE(ParameterTest) {
         CHECK_THROW(iface.Parser(argc, argv), std::exception);
     }
 
+    
     TEST(MissingPortParameter) {
         UserInterface iface;
         const char* argv[] = {"test", "-b", "database.db", "-j", "journal.log", nullptr};
@@ -64,6 +73,7 @@ SUITE(ParameterTest) {
         CHECK_THROW(iface.Parser(argc, argv), std::exception);
     }
 
+    
     TEST(InvalidPortParameter) {
         UserInterface iface;
         const char* argv[] = {"test", "-b", "db", "-j", "log", "-p", "not_a_number", nullptr};
@@ -71,6 +81,7 @@ SUITE(ParameterTest) {
         CHECK_THROW(iface.Parser(argc, argv), std::exception);
     }
 
+   
     TEST(NegativePort) {
         UserInterface iface;
         const char* argv[] = {"test", "-b", "db", "-j", "log", "-p", "-1", nullptr};
@@ -79,6 +90,7 @@ SUITE(ParameterTest) {
         CHECK_EQUAL(-1, iface.getParams().Port);
     }
 
+    
     TEST(ZeroPort) {
         UserInterface iface;
         const char* argv[] = {"test", "-b", "db", "-j", "log", "-p", "0", nullptr};
@@ -87,6 +99,7 @@ SUITE(ParameterTest) {
         CHECK_EQUAL(0, iface.getParams().Port);
     }
 
+    
     TEST(LargePort) {
         UserInterface iface;
         const char* argv[] = {"test", "-b", "db", "-j", "log", "-p", "65535", nullptr};
@@ -96,7 +109,10 @@ SUITE(ParameterTest) {
     }
 }
 
+
 SUITE(OptionalParametersTest) {
+    
+    
     TEST(WithAddressParameter) {
         UserInterface iface;
         const char* argv[] = {"test", "-b", "db", "-j", "log", "-p", "9090", "-a", "192.168.1.1", nullptr};
@@ -105,6 +121,7 @@ SUITE(OptionalParametersTest) {
         CHECK_EQUAL("192.168.1.1", iface.getParams().Address);
     }
 
+    
     TEST(WithAddressParameterLongForm) {
         UserInterface iface;
         const char* argv[] = {"test", "-b", "db", "-j", "log", "-p", "9090", "--address", "10.0.0.1", nullptr};
@@ -113,6 +130,7 @@ SUITE(OptionalParametersTest) {
         CHECK_EQUAL("10.0.0.1", iface.getParams().Address);
     }
 
+    
     TEST(DefaultAddress) {
         UserInterface iface;
         const char* argv[] = {"test", "-b", "db", "-j", "log", "-p", "9090", nullptr};
@@ -121,6 +139,7 @@ SUITE(OptionalParametersTest) {
         CHECK_EQUAL("127.0.0.1", iface.getParams().Address);
     }
 
+    
     TEST(LogFileParameter) {
         UserInterface iface;
         const char* argv[] = {"test", "-b", "db", "-j", "log", "-p", "9090", "-l", "custom_log.txt", nullptr};
@@ -129,6 +148,7 @@ SUITE(OptionalParametersTest) {
         CHECK_EQUAL("custom_log.txt", iface.getParams().logFile);
     }
 
+    
     TEST(LogFileParameterLongForm) {
         UserInterface iface;
         const char* argv[] = {"test", "-b", "db", "-j", "log", "-p", "9090", "--log", "another_log.txt", nullptr};
@@ -137,6 +157,7 @@ SUITE(OptionalParametersTest) {
         CHECK_EQUAL("another_log.txt", iface.getParams().logFile);
     }
 
+    
     TEST(DefaultLogFile) {
         UserInterface iface;
         const char* argv[] = {"test", "-b", "db", "-j", "log", "-p", "9090", nullptr};
@@ -146,7 +167,10 @@ SUITE(OptionalParametersTest) {
     }
 }
 
+
 SUITE(EdgeCasesTest) {
+    
+   
     TEST(EmptyArguments) {
         UserInterface iface;
         const char* argv[] = {"test", nullptr};
@@ -156,6 +180,7 @@ SUITE(EdgeCasesTest) {
         CHECK(!iface.Parser(argc, argv));
     }
 
+    
     TEST(UnknownParameter) {
         UserInterface iface;
         const char* argv[] = {"test", "-x", "value", nullptr};
@@ -163,6 +188,7 @@ SUITE(EdgeCasesTest) {
         CHECK_THROW(iface.Parser(argc, argv), std::exception);
     }
 
+    
     TEST(MissingParameterValue) {
         UserInterface iface;
         const char* argv[] = {"test", "-b", "-j", "log", "-p", "9090", nullptr};
@@ -170,6 +196,7 @@ SUITE(EdgeCasesTest) {
         CHECK_THROW(iface.Parser(argc, argv), std::exception);
     }
 
+    
     TEST(DuplicateParameters) {
         UserInterface iface;
         const char* argv[] = {"test", "-b", "db1", "-j", "log", "-p", "9090", nullptr};
@@ -179,6 +206,7 @@ SUITE(EdgeCasesTest) {
         CHECK_EQUAL("db1", iface.getParams().inFileName);
     }
 
+    
     TEST(MixedOrderParameters) {
         UserInterface iface;
         const char* argv[] = {"test", "-p", "8080", "-j", "journal.log", "-b", "database.db", nullptr};
@@ -189,6 +217,7 @@ SUITE(EdgeCasesTest) {
         CHECK_EQUAL(8080, iface.getParams().Port);
     }
 
+    
     TEST(HelpWithOtherParameters) {
         UserInterface iface;
         const char* argv[] = {"test", "-b", "db", "-h", "-j", "log", nullptr};
@@ -199,6 +228,8 @@ SUITE(EdgeCasesTest) {
 }
 
 SUITE(SpecialValuesTest) {
+    
+   
     TEST(EmptyStringValues) {
         UserInterface iface;
         const char* argv[] = {"test", "-b", "", "-j", "", "-p", "8080", nullptr};
@@ -208,6 +239,7 @@ SUITE(SpecialValuesTest) {
         CHECK_EQUAL("", iface.getParams().inFileJournal);
     }
 
+    
     TEST(SpecialCharactersInFilenames) {
         UserInterface iface;
         const char* argv[] = {"test", "-b", "file with spaces.db", "-j", "path/to/journal.log", "-p", "8080", nullptr};
@@ -217,6 +249,7 @@ SUITE(SpecialValuesTest) {
         CHECK_EQUAL("path/to/journal.log", iface.getParams().inFileJournal);
     }
 
+    
     TEST(IPv6Address) {
         UserInterface iface;
         const char* argv[] = {"test", "-b", "db", "-j", "log", "-p", "9090", "-a", "::1", nullptr};
@@ -225,6 +258,7 @@ SUITE(SpecialValuesTest) {
         CHECK_EQUAL("::1", iface.getParams().Address);
     }
 }
+
 
 int main() {
     return UnitTest::RunAllTests();
