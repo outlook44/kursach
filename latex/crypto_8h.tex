@@ -1,0 +1,95 @@
+\hypertarget{crypto_8h}{}\doxysection{Файл crypto.\+h}
+\label{crypto_8h}\index{crypto.h@{crypto.h}}
+
+
+Заголовочный файл для криптографических функций  
+
+
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$cryptopp/hex.\+h$>$}\newline
+{\ttfamily \#include $<$cryptopp/osrng.\+h$>$}\newline
+{\ttfamily \#include $<$cryptopp/sha.\+h$>$}\newline
+Граф включаемых заголовочных файлов для crypto.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{crypto_8h__incl}
+\end{center}
+\end{figure}
+Граф файлов, в которые включается этот файл\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=300pt]{crypto_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Функции}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{crypto_8h_aa9dd85785a218a052be7b0e50b3aff37}{auth}} (string salt, string pass)
+\begin{DoxyCompactList}\small\item\em Функция аутентификации с использованием SHA224 хеширования \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Заголовочный файл для криптографических функций 
+
+\begin{DoxyAuthor}{Автор}
+Веселов А.\+Н. 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Версия}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Дата}
+2025 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Авторство}
+ИБСТ ПГУ
+\end{DoxyCopyright}
+Содержит объявления функций для хеширования с использованием библиотеки Crypto\+PP 
+
+\doxysubsection{Функции}
+\mbox{\Hypertarget{crypto_8h_aa9dd85785a218a052be7b0e50b3aff37}\label{crypto_8h_aa9dd85785a218a052be7b0e50b3aff37}} 
+\index{crypto.h@{crypto.h}!auth@{auth}}
+\index{auth@{auth}!crypto.h@{crypto.h}}
+\doxysubsubsection{\texorpdfstring{auth()}{auth()}}
+{\footnotesize\ttfamily string auth (\begin{DoxyParamCaption}\item[{string}]{salt,  }\item[{string}]{pass }\end{DoxyParamCaption})}
+
+
+
+Функция аутентификации с использованием SHA224 хеширования 
+
+
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\texttt{ in}}  & {\em salt} & Соль для хеширования \\
+\hline
+\mbox{\texttt{ in}}  & {\em pass} & Пароль пользователя \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Хеш-\/строка в hex-\/формате
+\end{DoxyReturn}
+Использует алгоритм SHA224 для создания хеша от конкатенации соли и пароля
+
+
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\texttt{ in}}  & {\em salt} & Соль для хеширования \\
+\hline
+\mbox{\texttt{ in}}  & {\em pass} & Пароль пользователя \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Хеш-\/строка в hex-\/формате
+\end{DoxyReturn}
+Вычисляет SHA224 хеш от конкатенации соли и пароля, результат возвращает в hex-\/формате $<$ Объект для вычисления SHA224 хеша
+
+$<$ Результирующий хеш
+
+$<$ Конкатенация соли и пароля
+
+$<$ Использование SHA224 для хеширования
+
+$<$ Кодирование результата в hex
+
+$<$ Возврат хеша в hex-\/формате

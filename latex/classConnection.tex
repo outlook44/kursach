@@ -1,0 +1,66 @@
+\hypertarget{classConnection}{}\doxysection{Класс Connection}
+\label{classConnection}\index{Connection@{Connection}}
+
+
+Класс для управления сетевыми соединениями  
+
+
+
+
+{\ttfamily \#include $<$connection.\+h$>$}
+
+\doxysubsection*{Открытые статические члены}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{classConnection_a2df488422f94039736e0f379729abf4f}{connection}} (const \mbox{\hyperlink{structParams}{Params}} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Устанавливает соединение и обрабатывает клиентов \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Класс для управления сетевыми соединениями 
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classConnection_a2df488422f94039736e0f379729abf4f}\label{classConnection_a2df488422f94039736e0f379729abf4f}} 
+\index{Connection@{Connection}!connection@{connection}}
+\index{connection@{connection}!Connection@{Connection}}
+\doxysubsubsection{\texorpdfstring{connection()}{connection()}}
+{\footnotesize\ttfamily int Connection\+::connection (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structParams}{Params}} $\ast$}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Устанавливает соединение и обрабатывает клиентов 
+
+Основная функция установки соединения и обработки клиентов
+
+
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\texttt{ in}}  & {\em p} & Параметры соединения \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+0 при успехе, 1 при ошибке 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Исключения}
+{\em system\+\_\+error} & при сетевых ошибках\\
+\hline
+\end{DoxyExceptions}
+
+\begin{DoxyParams}{Аргументы}
+{\em p} & Указатель на параметры соединения \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+0 при успехе, 1 при ошибке аутентификации 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Исключения}
+{\em std\+::system\+\_\+error} & при сетевых ошибках \\
+\hline
+\end{DoxyExceptions}
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{connection_8h}{connection.\+h}}\item 
+\mbox{\hyperlink{connection_8cpp}{connection.\+cpp}}\end{DoxyCompactItemize}

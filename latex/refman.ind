@@ -1,0 +1,80 @@
+\begin{theindex}
+
+  \item {auth}
+    \subitem {crypto.cpp}, \hyperpage{15}
+    \subitem {crypto.h}, \hyperpage{18}
+
+  \indexspace
+
+  \item {Connection}, \hyperpage{5}
+    \subitem {connection}, \hyperpage{5}
+  \item {connection}
+    \subitem {Connection}, \hyperpage{5}
+  \item {connection.cpp}, \hyperpage{11}
+    \subitem {datawrite}, \hyperpage{12}
+    \subitem {findUserInFile}, \hyperpage{13}
+  \item {connection.h}, \hyperpage{13}
+  \item {crypto.cpp}, \hyperpage{14}
+    \subitem {auth}, \hyperpage{15}
+  \item {crypto.h}, \hyperpage{16}
+    \subitem {auth}, \hyperpage{18}
+
+  \indexspace
+
+  \item {datawrite}
+    \subitem {connection.cpp}, \hyperpage{12}
+
+  \indexspace
+
+  \item {findUserInFile}
+    \subitem {connection.cpp}, \hyperpage{13}
+
+  \indexspace
+
+  \item {getCurrentTime}
+    \subitem {log.cpp}, \hyperpage{22}
+    \subitem {log.h}, \hyperpage{24}
+  \item {getDescription}
+    \subitem {UserInterface}, \hyperpage{8}
+  \item {getParams}
+    \subitem {UserInterface}, \hyperpage{8}
+
+  \indexspace
+
+  \item {interface.cpp}, \hyperpage{19}
+  \item {interface.h}, \hyperpage{20}
+
+  \indexspace
+
+  \item {log.cpp}, \hyperpage{21}
+    \subitem {getCurrentTime}, \hyperpage{22}
+    \subitem {logError}, \hyperpage{22}
+  \item {log.h}, \hyperpage{23}
+    \subitem {getCurrentTime}, \hyperpage{24}
+    \subitem {logError}, \hyperpage{24}
+  \item {logError}
+    \subitem {log.cpp}, \hyperpage{22}
+    \subitem {log.h}, \hyperpage{24}
+
+  \indexspace
+
+  \item {main}
+    \subitem {main.cpp}, \hyperpage{26}
+  \item {main.cpp}, \hyperpage{25}
+    \subitem {main}, \hyperpage{26}
+
+  \indexspace
+
+  \item {Params}, \hyperpage{6}
+  \item {Parser}
+    \subitem {UserInterface}, \hyperpage{8}
+
+  \indexspace
+
+  \item {UserInterface}, \hyperpage{7}
+    \subitem {getDescription}, \hyperpage{8}
+    \subitem {getParams}, \hyperpage{8}
+    \subitem {Parser}, \hyperpage{8}
+    \subitem {UserInterface}, \hyperpage{7}
+
+\end{theindex}
