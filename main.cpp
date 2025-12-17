@@ -3,7 +3,6 @@
  * @author Веселов А.Н.
  * @version 1.0
  * @date 2025
- * @copyright ИБСТ ПГУ
  * @brief Главный файл серверного приложения
  * @details Точка входа в программу, обработка параметров и запуск сервера
  */
@@ -16,14 +15,10 @@
  * @param[in] argc Количество аргументов командной строки
  * @param[in] argv Массив аргументов командной строки
  * @return 0 при успешном выполнении, 1 при ошибке параметров
- * @details Функция выполняет:
- * - Парсинг параметров командной строки
- * - Проверку корректности параметров
- * - Запуск сервера для обработки входящих соединений
  */
 int main(int argc, const char** argv)
 {
-    UserInterface userinterface; ///< Объект для работы с пользовательским интерфейсом
+    UserInterface userinterface; // Объект для работы с пользовательским интерфейсом
     
     // Парсинг аргументов командной строки
     if(!userinterface.Parser(argc, argv)){
@@ -33,7 +28,7 @@ int main(int argc, const char** argv)
     
     // Получение параметров и запуск сервера
     Params params = userinterface.getParams();
-    connection(&params);
+    Connection::connection(&params);
     
     return 0;
 }
